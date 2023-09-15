@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offers</title>
+    <style>
+        /* Add CSS styles for the product boxes here */
+        /* You can add styles for the boxes, hover effects, etc. */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-box {
+            width: 200px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .product-box:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Offers Just for You!</h1>
+    <h2 style="color: red;">{{ discount }}% OFF on following products:</h2>
+    <div class="product-container">
+        {% for product in products %}
+            <div class="product-box">
+                <h2>Product ID: {{ product }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
