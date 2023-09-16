@@ -13,7 +13,10 @@ cursor = conn.cursor()
 cursor.execute("SELECT Review, Review_Score FROM customer_reviews WHERE Review_Score==0")
 
 # Fetch a batch of reviews
-batch_size = 3
+# In my case since I dont have a paid account for the OpenAI API
+# I can send only  3 requests per minute
+# But just for $0.002 per 1K Tokens, an organisation can send 3500 requests and 90000 tokens per minute with a paid acount
+batch_size = 3  
 reviews_to_score = cursor.fetchmany(batch_size)
 
 for rev in reviews_to_score:
@@ -43,15 +46,6 @@ for rev in reviews_to_score:
     cursor.execute("UPDATE customer_reviews SET Review_Score = ? WHERE Review = ?",
                    (score, review))
 
-
-cursor.execute("SELECT rowid, Review_Score FROM customer_reviews WHERE Review_Score = 0")
-rows_to_update = cursor.fetchall()
-
-# Update each row with a different random number
-for row in rows_to_update:
-    row_id, _ = row
-    new_score = random.randint(2, 10)
-    cursor.execute("UPDATE customer_reviews SET Review_Score = ? WHERE rowid = ?", (new_score, row_id))
 conn.commit()
 # Close the database connection
 conn.close()
