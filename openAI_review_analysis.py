@@ -15,7 +15,7 @@ cursor.execute("SELECT Review, Review_Score FROM customer_reviews WHERE Review_S
 # Fetch a batch of reviews
 # In my case since I dont have a paid account for the OpenAI API
 # I can send only  3 requests per minute
-# But just for $0.002 per 1K Tokens, an organisation can send 3500 requests and 90000 tokens per minute with a paid acount
+# But just for $0.002 per 1K Tokens, an organisation can send 3500 requests and 90000 tokens per minute with a paid account
 batch_size = 3  
 reviews_to_score = cursor.fetchmany(batch_size)
 
