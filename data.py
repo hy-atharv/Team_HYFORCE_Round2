@@ -236,6 +236,9 @@ competitor_df = pd.DataFrame(competitor_pricing_data, columns=['Product_ID', 'Co
 competitor_df.to_csv('mock_competitor_pricing_data.csv', index=False)
 
 df2 = pd.read_csv("mock_competitor_pricing_data.csv")
+
+
+#This Loop is changing the competitor prices for the products after every 5 to 10 secs
 while True:
     time.sleep(random.uniform(5, 10))
     for product_id in com_products:
